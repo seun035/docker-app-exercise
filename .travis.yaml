@@ -1,0 +1,20 @@
+language: node_js
+node_js
+  - 14
+services:
+  - docker
+before_install:
+  - echo "Nothing to before_install"
+install:
+  - echo "Nothing to install"
+before_script:
+  - echo "Nothing before_script"
+script:
+  - docker --version
+  - docker image build -t simple-node-app .
+  - docker tag simple-node-app liadioluwaseun/simple-node-app
+after_script:
+  - echo "Nothing after_script"
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push liadioluwaseun/simple-node-app
