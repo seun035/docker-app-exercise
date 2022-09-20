@@ -11,10 +11,10 @@ before_script:
   - echo "Nothing before_script"
 script:
   - docker --version
-  - docker image build -t simple-node-app .
-  - docker tag simple-node-app liadioluwaseun/simple-node-app
+  - docker image build -t simple-node .
+  - docker tag simple-node liadioluwaseun/simple-node
 after_script:
   - echo "Nothing after_script"
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push liadioluwaseun/simple-node-app
+  - docker push liadioluwaseun/simple-node
